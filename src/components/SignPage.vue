@@ -1,15 +1,15 @@
 <template>
     <div class="user-container">
             <div class="signin d-flex" v-if="isClicked">
-                <form action="#" class="signin-in-form d-flex justify-content-center align-items-center flex-column">
+                <form action="#" class="signin-in-form d-flex justify-content-center align-items-center flex-column" @submit.prevent="handleSubmit()">
                     <h2 class="signin-tite">Sign In</h2>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="text" placeholder="Email Address">
+                        <input type="email" placeholder="Email Address" v-model="user.email">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" v-model="user.password">
                     </div>
                     <input type="submit" class="btn solid">
                     <p class="social-text">Or Sign in with Social Platforms</p>
@@ -44,23 +44,23 @@
 
             <!--SignUP-->
             <div class="signup d-flex" v-if="!isClicked">
-                <form action="#" class="signin-in-form d-flex justify-content-center align-items-center flex-column">
+                <form action="#" class="signin-in-form d-flex justify-content-center align-items-center flex-column" @submit.prevent="handleSubmit()">
                     <h2 class="signup-tite">Sign Up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="First Name" v-model="user.firstname">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Last Name">
+                        <input type="text" placeholder="Last Name" v-model="user.lastname">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="text" placeholder="Email Address">
+                        <input type="email" placeholder="Email Address" v-model="user.email">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" v-model="user.password">
                     </div>
                     <input type="submit" class="btn solid">
                     <p class="social-text">Or Sign Up with Social Platforms</p>
@@ -96,11 +96,20 @@
 </template>
 
 <script>
+// import useVuelidate from '@vuelidate/core'
+import { required, minLength, maxLength} from '@vuelidate/validators'
+
     export default {
         name: 'SignIn_SignUp',
         data: function() {
             return{
-                isClicked: false
+                isClicked: false,
+                user: {
+                    firstname: "",
+                    lastname: "",
+                    email: "",
+                    password: "",
+                }
             };
         },
         methods: {
@@ -109,7 +118,34 @@
             },
             signUp: function() {
                 this.isClicked = false;
+            },
+            validations: {
+                firstname: {
+                    required,
+                    minLength: minLength(3),
+                    maxLength: maxLength(10)
+                },
+                lastname: {
+                    required,
+                    minLength: minLength(3),
+                    maxLength: maxLength(10)
+                },
+                email: {
+                    required,
+                    minLength: minLength(3),
+                    maxLength: maxLength(10)
+                },
+                password: {
+                    required,
+                    minLength: minLength(3),
+                    maxLength: maxLength(10)
+                },
+            },
+            handleSubmit: function() {
+                console.log(this.user);
+                
             }
+
         }
     }
 </script>

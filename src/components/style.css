@@ -209,7 +209,6 @@ nav{
     border: none;
     line-height: 1px;
     font-size: 18px;
-    font-weight: 600;
     color: #1A1253;
 }
 .input-field input::placeholder {
@@ -716,10 +715,12 @@ nav{
     font-size: 30px;
     font-weight: bold;
 }
-
 @media screen and (max-width: 700px) {
     nav{
         padding: 0px 50px !important;
+    }
+    .navbar-brand{
+        font-size: 32px !important;
     }
     #crypto-icon{
         margin-left: 1px;

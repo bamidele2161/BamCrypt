@@ -123,14 +123,6 @@
                     <p class="answer-text" v-if="isDropped">BAMCRYPT is the best cryptocurrency trading platform. Trade cypto simple, top cryptocurrency exchange platform and the best platform to buy cryptocurrency</p>
                 </div>
 
-                <div class="question-second-div">
-                    <div class="question-line d-flex justify-content-between font-weight-bold" >
-                        <p class="question-text">Crypto Supported cryptocurrencies ?</p>
-                        <i class="fa-solid fa-angle-up" v-if="isViewed" @click="viewed()" id="faqs-arrow"></i>
-                        <i class="fa-solid fa-angle-down" v-if="!isViewed" @click="view()" id="faqs-arrow"></i>
-                    </div>
-                    <p class="answer-text" v-if="isViewed">BAMCRYPT is the best cryptocurrency trading platform that only trades crypto supported cryptocurrencies.</p>
-                </div>
 
             </div>
         </div>
@@ -144,7 +136,6 @@
         data: function() {
             return{
                 isDropped: false,
-                isViewed: false
             };
         },
         methods: {
@@ -154,12 +145,7 @@
             close: function() {
                 this.isDropped = false;
             },
-            view: function() {
-                this.isViewed = true;
-            },
-            viewed: function() {
-                this.isViewed = false;
-            }
+
         }
     }
 </script>
